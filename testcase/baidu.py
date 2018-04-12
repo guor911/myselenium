@@ -8,6 +8,7 @@ import HTMLTestRunner
 class baidu(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
+
         self.browser.get("http://www.baidu.com")
         self.browser.maximize_window()
         assert '百度一下，你就知道' in self.browser.title

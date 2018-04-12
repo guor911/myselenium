@@ -4,7 +4,7 @@ import HTMLTestRunner
 
 
 now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
-HtmlFile = "result\\" + now + "HTMLtemplate.html"
+HtmlFile = "report\\" + now + "HTMLtemplate.html"
 
 cases = []
 for file_name in os.listdir(os.getcwd()+r"\testcase"):
