@@ -1,5 +1,6 @@
 # -*-coding:utf-8 -*-
 from selenium import webdriver
+from models import driver
 import time, sys
 import unittest
 import HTMLTestRunner
@@ -7,8 +8,7 @@ import HTMLTestRunner
 
 class baidu(unittest.TestCase):
     def setUp(self):
-        self.browser = webdriver.Firefox()
-
+        self.browser = driver.browser()
         self.browser.get("http://www.baidu.com")
         self.browser.maximize_window()
         assert '百度一下，你就知道' in self.browser.title
@@ -17,7 +17,7 @@ class baidu(unittest.TestCase):
         self.browser.find_element_by_id("kw").send_keys("我找百度")
         self.browser.find_element_by_id("su").click()
         # time.sleep(3)
-        assert 'firefox' is self.browser.name
+        # assert 'firefox' is self.browser.name
 
     def testBaiDusearch2(self):
         print('second')

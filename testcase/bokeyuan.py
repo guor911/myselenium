@@ -1,5 +1,8 @@
 # -*-coding:utf-8 -*-
-from selenium import webdriver
+from models import driver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 import time, sys
 import unittest
 import HTMLTestRunner
@@ -7,23 +10,21 @@ import HTMLTestRunner
 
 class bokeyuan(unittest.TestCase):
     def setUp(self):
-        self.browser = webdriver.Firefox()
-        self.browser.get("http://www.baidu.com")
+        self.browser = driver.browser()
+        self.browser.get("https://www.cnblogs.com/")
         self.browser.maximize_window()
-        assert '百度一下，你就知道' in self.browser.title
 
     def testbokeyuan1(self):
-        print('first')
-        self.browser.find_element_by_id("kw").send_keys("我找百度")
-        self.browser.find_element_by_id("su").click()
-        # time.sleep(3)
-        # assert 'firefox' is self.browser.name
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.ID, 'zzk_q')))
+        self.browser.find_element_by_id("zzk_q").send_keys("找博客")
+        # self.browser.find_element_by_xpath("input[@]onclick='zzk_go'").click()
+        time.sleep(3)
 
     def testbokeyuan2(self):
-        print('second')
-        self.browser.find_element_by_id("kw").send_keys("再次百度")
-        self.browser.find_element_by_id("su").click()
-        # time.sleep(3)
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.ID, 'zzk_q')))
+        self.browser.find_element_by_id("zzk_q").send_keys("再次博客")
+        # self.browser.find_element_by_xpath("input[@]onclick='zzk_go'").click()
+        time.sleep(3)
 
     def tearDown(self):
         self.browser.quit()
